@@ -47,12 +47,15 @@ security = HTTPBasic(auto_error=False)
 SESSION_COOKIE = "mc_growth_session"
 
 # ── Marca del workspace — configurable por cliente, sin tocar código ──────
-BRAND_NAME = os.getenv("BRAND_NAME", "MC Growth OS")
-BRAND_COMPANY = os.getenv("BRAND_COMPANY", "MC Growth")
-BRAND_TAGLINE = os.getenv("BRAND_TAGLINE", "Growth OS · Lead intelligence")
-BRAND_SHORT = os.getenv("BRAND_SHORT", "MC")
-BRAND_COLOR = os.getenv("BRAND_COLOR", "#f47b20")
-BRAND_COLOR_2 = os.getenv("BRAND_COLOR_2", "#ff9a4d")
+# Base blanca: los defaults son genéricos a propósito, NO los de ninguna
+# agencia. Cada cliente se identifica completando BRAND_* en su propio .env —
+# así el mismo código sirve para la agencia que sea, con la marca que sea.
+BRAND_NAME = os.getenv("BRAND_NAME", "CRM")
+BRAND_COMPANY = os.getenv("BRAND_COMPANY", "Tu Negocio")
+BRAND_TAGLINE = os.getenv("BRAND_TAGLINE", "Asistente de WhatsApp con IA")
+BRAND_SHORT = os.getenv("BRAND_SHORT", "AI")
+BRAND_COLOR = os.getenv("BRAND_COLOR", "#2563eb")
+BRAND_COLOR_2 = os.getenv("BRAND_COLOR_2", "#60a5fa")
 BRAND_LOGO_URL = os.getenv("BRAND_LOGO_URL", "")
 
 
@@ -60,9 +63,9 @@ def _marca(html: str) -> str:
     """
     Reemplaza los textos y colores de marca hardcodeados en el HTML por los
     configurados en las variables BRAND_* — así el mismo dashboard sirve
-    para cualquier cliente de la base sin tocar este archivo.
+    para cualquier cliente de cualquier agencia sin tocar este archivo.
     El orden importa: la frase larga va antes que la corta para no dejarla
-    pisada a medias (ej. "MC Growth OS" antes que "MC Growth").
+    pisada a medias (ej. "CRM" antes que una palabra que lo contenga).
     """
     return (
         html

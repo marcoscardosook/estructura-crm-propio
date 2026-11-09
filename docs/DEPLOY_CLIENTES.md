@@ -1,6 +1,9 @@
-# MC Growth OS — guía base para replicar clientes
+# Guía base para replicar clientes
 
-Este repositorio es la base del producto. Cada cliente debe tener su propia instancia de Render, su propia base PostgreSQL y sus propias credenciales de Meta/Anthropic.
+Este repositorio es una base white label: no tiene la marca de ninguna agencia
+fija. Cualquier agencia puede clonarlo y usarlo con su propia marca y la de
+cada uno de sus clientes. Cada cliente debe tener su propia instancia de
+Render, su propia base PostgreSQL y sus propias credenciales de Meta/Anthropic.
 
 ## Arquitectura recomendada
 
@@ -23,7 +26,7 @@ El número humano del cliente puede seguir funcionando en WhatsApp Business App 
 3. Crear un proyecto PostgreSQL independiente, por ejemplo en Supabase.
 4. Cargar las variables de entorno del cliente en Render.
 5. Configurar `config/business.yaml`, `config/prompts.yaml` y la carpeta `knowledge/`.
-6. Configurar la marca del dashboard con las variables `BRAND_*` (ver más abajo) — sin esto, el cliente ve el nombre y colores de MC Growth Agency.
+6. Configurar la marca del dashboard con las variables `BRAND_*` (ver más abajo) — con la marca de la agencia o del cliente final, según corresponda. Sin esto, el cliente ve un placeholder genérico ("CRM" / "Tu Negocio").
 7. Crear el número de WhatsApp Cloud API y configurar el webhook.
 8. Configurar el bot de Telegram y su `TELEGRAM_CHAT_ID`.
 9. Definir `DASHBOARD_USERNAME` y una contraseña única.
@@ -32,7 +35,7 @@ El número humano del cliente puede seguir funcionando en WhatsApp Business App 
 ## Checklist antes de entregar una instancia
 
 - Confirmar que `/api/system/status` informa `PostgreSQL` y `production`.
-- Confirmar que el dashboard muestra la marca del cliente (nombre, color, logo), no la de MC Growth Agency.
+- Confirmar que el dashboard muestra la marca correcta (nombre, color, logo) y no el placeholder genérico.
 - Enviar una conversación de prueba y verificar que queda visible en **Bandeja**.
 - Verificar extracción de nombre, rubro, presupuesto, interés y sentimiento.
 - Confirmar recepción de Telegram y carga del lead en **Pipeline**.
@@ -60,9 +63,11 @@ DASHBOARD_PASSWORD=
 
 ## Marca del dashboard (`BRAND_*`)
 
-Todas opcionales — sin configurarlas, el dashboard usa la identidad de MC Growth Agency
-(naranja, "MC Growth OS"). Para un cliente nuevo alcanza con completar estas variables
-en Render; no hace falta tocar ningún archivo de código:
+Todas opcionales — sin configurarlas, el dashboard usa una identidad placeholder
+genérica ("CRM" / "Tu Negocio", azul). Esta base no tiene marca propia: sirve para
+cualquier agencia. Para un cliente nuevo alcanza con completar estas variables
+en Render con la marca de la agencia o del cliente final; no hace falta tocar
+ningún archivo de código:
 
 ```env
 BRAND_NAME=Nombre CRM del cliente       # título de pestaña, footer del menú
@@ -98,7 +103,7 @@ El equipo marca cerrado, descartado o mantiene seguimiento
 
 ## Cambios del núcleo
 
-Las mejoras generales del dashboard se hacen en este repositorio base. Luego se publican por Git y se actualizan las instancias de clientes después de probarlas en MC Growth OS.
+Las mejoras generales del dashboard se hacen en este repositorio base. Luego se publican por Git y se actualizan las instancias de clientes después de probarlas.
 
 Las credenciales, prompts, datos de negocio y bases de datos nunca se comparten entre clientes.
 

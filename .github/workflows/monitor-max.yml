@@ -40,9 +40,9 @@ jobs:
 
           if [ "$current" != "$previous" ]; then
             if [ "$current" = "down" ]; then
-              text="🚨 ALERTA: Max no responde\n\nEl servicio de MC Growth Agency no está respondiendo correctamente. Revisá Render y sus logs.\n\nHora: $(date -u '+%d/%m/%Y %H:%M UTC')"
+              text="🚨 ALERTA: Max no responde\n\nEl servicio no está respondiendo correctamente. Revisá Render y sus logs.\n\nHora: $(date -u '+%d/%m/%Y %H:%M UTC')"
             else
-              text="✅ Max volvió a funcionar\n\nEl servicio de MC Growth Agency está respondiendo nuevamente.\n\nHora: $(date -u '+%d/%m/%Y %H:%M UTC')"
+              text="✅ Max volvió a funcionar\n\nEl servicio está respondiendo nuevamente.\n\nHora: $(date -u '+%d/%m/%Y %H:%M UTC')"
             fi
             curl -sS --max-time 20 -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
               -H 'Content-Type: application/json' \
